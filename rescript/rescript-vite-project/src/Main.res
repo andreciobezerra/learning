@@ -1,8 +1,6 @@
-@module("react-doom/client")
-external createRoot: Dom.element => root = "createRoot"
+let container = ReactDOM.querySelector("#root")
 
-createRoot(ReactDOM.querySelector("#root")->Belt.Option.getExn).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+let _ = switch container {
+| None => Js.log("Root component not founded")
+| Some(elem) => ReactDOM.render(<App />, elem)
+}
